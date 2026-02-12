@@ -86,3 +86,47 @@ curl -fsSL https://cdn.coollabs.io/coolify/install.sh | sudo bash
 ## License
 
 MIT
+
+---
+
+## Full Automation with Hetzner API
+
+Provision a VPS and bootstrap OpenClaw in one command:
+
+```bash
+HETZNER_API_TOKEN=xxx ./provision.sh
+```
+
+### Options
+
+```
+--name NAME        Server name (default: openclaw-timestamp)
+--type TYPE        Server type (default: cax11 ~€4/mo)
+--location LOC     Location (default: fsn1 - Germany)
+--ssh-key NAME     Use existing Hetzner SSH key
+--ssh-key-file F   Local SSH public key (default: ~/.ssh/id_ed25519.pub)
+```
+
+### Server Types
+
+| Type  | CPU | RAM  | Price  |
+|-------|-----|------|--------|
+| cax11 | 2 ARM | 4GB | ~€4/mo |
+| cax21 | 4 ARM | 8GB | ~€8/mo |
+| cax31 | 8 ARM | 16GB | ~€15/mo |
+| cpx11 | 2 x86 | 2GB | ~€5/mo |
+| cx22  | 2 x86 | 4GB | ~€6/mo |
+
+### Example
+
+```bash
+# Create a beefy server named "my-agent" in Helsinki
+HETZNER_API_TOKEN=xxx ./provision.sh --name my-agent --type cax31 --location hel1
+```
+
+### Get Hetzner API Token
+
+1. Go to https://console.hetzner.cloud
+2. Select your project (or create one)
+3. Security → API Tokens → Generate API Token
+4. Give it Read & Write permissions
